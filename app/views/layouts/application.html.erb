@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sample2</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+<% if user_signed_in? %>
+  <%= link_to "Back", root_path %> |
+  <% if current_user.userparam.nil? %>
+     <%= link_to "Profile", new_userparam_path %> |
+  <% else %>
+   <%= link_to "Profile", userparam_path(current_user.id) %> |
+  <% end %>
+
+  <%= link_to "Logout",  destroy_user_session_path, method: :delete %>
+<% else %>
+   <%= link_to "Login", new_user_session_path %>
+<% end %>
+<hr>
+    <%= yield %>
+  
+<p>Copyright 2018 by Kusha</p>
+  </body>
+</html>
